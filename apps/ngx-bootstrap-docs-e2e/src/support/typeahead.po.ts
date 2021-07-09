@@ -1,7 +1,7 @@
 import { BaseComponent } from './base.component';
 
 export class TypeaheadPo extends BaseComponent {
-  pageUrl = '/typeahead';
+  pageUrl = '#/typeahead';
   pageTitle = 'Typeahead';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/typeahead';
 
@@ -51,5 +51,10 @@ export class TypeaheadPo extends BaseComponent {
   isDropdownScrollable(stateMatch: string) {
     cy.get(this.activeDropdown).contains(stateMatch).scrollIntoView()
       .should('be.visible');
+  }
+
+  isDropdownNotExist(baseSelector: string) {
+    cy.get(`${baseSelector} ${this.activeDropdown}`)
+      .should('not.exist');
   }
 }

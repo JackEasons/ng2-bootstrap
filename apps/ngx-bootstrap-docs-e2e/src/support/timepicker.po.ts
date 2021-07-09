@@ -3,7 +3,7 @@ import ObjectLike = Cypress.ObjectLike;
 import TriggerOptions = Cypress.TriggerOptions;
 
 export class TimepickerPo extends BaseComponent {
-  pageUrl = '/timepicker';
+  pageUrl = '#/timepicker';
   pageTitle = 'Timepicker';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/timepicker';
 
@@ -128,11 +128,10 @@ export class TimepickerPo extends BaseComponent {
     }
   }
 
-  isTimepickerInputVisible(baseSelector: string, type: 'minutes' | 'seconds', visible = true) {
+  isTimepickerInputExist(baseSelector: string, type: 'minutes' | 'seconds', exist = true) {
     const placeholder = type === 'minutes' ? 'MM' : 'SS';
-    cy.get(`${baseSelector} timepicker`)
-      .find(`input[placeholder="${placeholder}"]`)
-      .should(visible ? 'to.be.visible' : 'not.to.be.visible');
+    cy.get(`${baseSelector} timepicker input[placeholder="${placeholder}"]`)
+      .should(exist ? 'exist' : 'not.exist');
   }
 
   selectOption(baseSelector: string, optionValue: string | number, selectIndex: number) {
